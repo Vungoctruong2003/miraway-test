@@ -25,8 +25,7 @@ class PostController extends Controller
         Post::create($dataCreatePost);
         Session::flash('successCreatePost', 'Tạo mới bài viết thành công');
         $userSendMailNewPosts = UserSeeNewPosts::all()->pluck('email')->toArray();
-
-        dispatch(new SendEmailJob($userSendMailNewPosts));
+        SendEmailJob::dispatch($userSendMailNewPosts);
         return redirect()->route('home');
     }
 
