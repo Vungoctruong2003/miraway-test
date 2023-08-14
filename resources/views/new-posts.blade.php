@@ -15,9 +15,7 @@
                             <p class="title-post">{{strtoupper($post->title)}}</p>
                         </div>
                         <div class="featured-post-content">
-                            <p class="content-post">Ngày 20/8 vừa qua, Công ty Cổ phần
-                                Miraway Giải pháp Công nghệ đã triển khai thành công Kiosk tự phục vụ 24/7 (Self –
-                                Service Kiosk) tại 30 cửa hàng lớn thuộc hệ thống Winmart+.</p>
+                            <p class="content-post">{{$post->content}}</p>
                         </div>
                         <div class="featured-post-content text-read-more">
                             <a href="#">Xem thêm</a>
