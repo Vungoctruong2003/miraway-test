@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\SendEmailEvent;
 use App\Http\Requests\CreatePostRequest;
 use App\Jobs\SendEmailJob;
 use App\Models\Post;
 use App\Models\UserSeeNewPosts;
 use Illuminate\Support\Facades\Session;
-use function Symfony\Component\String\s;
 
 class PostController extends Controller
 {

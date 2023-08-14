@@ -18,6 +18,18 @@
         <div class="alert alert-info">{{ Session::get('successRegisterSeeNewPost') }}</div>
     @endif
 
+    @if (Session::has('noVerify'))
+        <div class="alert alert-info">{{ Session::get('noVerify') }}</div>
+    @endif
+
+    @if (Session::has('successCreateNotVerify'))
+        <div class="alert alert-info">{{ Session::get('successCreateNotVerify') }}</div>
+    @endif
+
+    @if (Session::has('errorVerifyAccount'))
+        <div class="alert alert-info">{{ Session::get('errorVerifyAccount') }}</div>
+    @endif
+
     <div class="content mt-5">
         @include('top-content')
 

@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
+use App\Jobs\VerifyEmailJob;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -38,6 +38,17 @@ class AuthController extends Controller
         $dataRegisterUser['password'] = Hash::make($dataRegisterUser['password']);
         $user = User::create($dataRegisterUser);
 
-        event(new Registered($user));
+        VerifyEmailJob::dispatch($user);
+        Session::flash('successCreateNotVerify', 'Tài khoản vừa đăng kí, hãy xác minh lại');
+        return redirect()->route('home');
+    }
+
+    public function verifyEmail(
+        $userId,
+    )
+    {
+        User::where('id', $userId)->update(['email_verified_at' => now()]);
+        Session::flash('successVerify', 'Tài khoản xác minh thành công');
+        return redirect()->route('home');
     }
 }
